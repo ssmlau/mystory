@@ -1,10 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { AuthUserContext } from '../Session';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import {withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
+
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
@@ -20,9 +33,10 @@ const Navigation = () => (
 
 const NavigationAuth = ({ authUser }) => (
   <ul>
-    <li>
+    < Button variant = "contained"
+    color = "primary">
       <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
+    </Button>
     <li>
       <Link to={ROUTES.HOME}>Home</Link>
     </li>
@@ -42,13 +56,14 @@ const NavigationAuth = ({ authUser }) => (
 
 const NavigationNonAuth = () => (
   <ul>
-    <li>
+    <Button>
       <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
+    </Button>
     <li>
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
     </li>
   </ul>
 );
 
-export default Navigation;
+
+export default withStyles(styles)(Navigation);
